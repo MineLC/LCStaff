@@ -1,0 +1,34 @@
+no-arguments-message:
+  - " "
+  - " &b&lLCSTAFF &8- &70.0.1"
+  - " "
+  - " &e/s &7->"
+  - "   &ffreeze &7(jugador)- Congela/Descongela a un jugador"
+  - "   &fvanish/v &7- Hazte invisible para todos los no staffs"
+  - "   &finvsee &7(jugador) - Revisa el inventario de un jugador"
+  - " "
+  - "   &ftp &7(jugador) - Ve al lugar del jugador"
+  - "   &ftphere &7(jugador) - Manda a un jugador a tu lugar"
+  - " "
+
+no-permission: "&4&lERROR: &cNo tienes permisos para ejecutar los comandos de staffs"
+
+vanish-on: "&aAhora eres invisible para todos los jugadores que no sean staffs"
+vanish-off: "&aAhora eres visible para todos"
+
+freeze-format: "&cFormato: /s freeze &6(jugador)"
+freeze-complete: "&cAhora este jugador está congelado"
+freeze-message:
+  - " "
+  - " &b&l¿Estás haciendo trampas?"
+  - " &7Si no es asi, entra al discord:"
+  - " &fhttp://mine.lc/discord"
+  - " "
+  - " &7Un staff no te puede pedir contraseñas"
+  - " &7privadas: microsoft, minecraft, minelc, etc."
+  - " "
+
+tp-format: "&cFormato: /s tp &6(jugador)"
+invsee-format: "&cFormato: /s invsee &6(jugador)"
+
+target-no-exist: "&cEl jugador &6%player% &cno existe"

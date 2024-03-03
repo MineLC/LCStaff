@@ -39,7 +39,7 @@ public final class StaffCommand implements Command {
             Messages.send(sender, "no-permission");
             return;
         }
-        if (args.length != 0) {
+        if (args.length < 1) {
             Messages.send(sender, "no-arguments-message");
             return;
         }

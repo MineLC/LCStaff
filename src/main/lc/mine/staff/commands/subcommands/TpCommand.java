@@ -12,13 +12,13 @@ public final class TpCommand implements SubCommand {
 
     @Override
     public void handle(StaffData data, Player player, String[] args) {
-        if (args.length != 1) {
+        if (args.length != 2) {
             Messages.send(player, "tp-format");
             return;
         }
-        final Player target = Bukkit.getPlayer(player.getName());
+        final Player target = Bukkit.getPlayer(args[1]);
         if (target == null) {
-            send(player, Messages.get("target-no-exist").replace("%player%", args[0]));
+            send(player, Messages.get("target-no-exist").replace("%player%", args[1]));
             return;
         }
         player.teleport(target);

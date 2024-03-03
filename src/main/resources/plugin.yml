@@ -1,0 +1,3 @@
+name: LcStaff
+main: lc.mine.staff.LCStaffPlugin
+version: 0.0.1

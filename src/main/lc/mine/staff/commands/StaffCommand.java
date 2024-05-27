@@ -17,7 +17,7 @@ import lc.mine.staff.storage.StaffData;
 public final class StaffCommand implements Command {
 
     private final Map<Player, StaffData> staffs;
-    private final VanishCommand vanish;
+    private final VanishCommand vanish = new VanishCommand();
     private final FreezeCommand freeze = new FreezeCommand();
     private final TpCommand tp = new TpCommand();
     private final TpHereCommand tphere = new TpHereCommand();
@@ -25,7 +25,6 @@ public final class StaffCommand implements Command {
 
     public StaffCommand(Map<Player, StaffData> staffs) {
         this.staffs = staffs;
-        vanish = new VanishCommand(staffs);
     }
 
     @Override
@@ -34,10 +33,13 @@ public final class StaffCommand implements Command {
             send(sender, "You need be a player to execute this command");
             return;
         }
-        final StaffData data = staffs.get(player);
-        if (data == null) {
+        if (!player.hasPermission("lcstaff")) {
             Messages.send(sender, "no-permission");
             return;
+        }
+        final StaffData data = staffs.get(player);
+        if (data == null) {
+            staffs.put(player, new StaffData());
         }
         if (args.length < 1) {
             Messages.send(sender, "no-arguments-message");

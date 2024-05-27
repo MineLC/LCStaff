@@ -7,7 +7,6 @@ import java.util.Map;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -33,12 +32,6 @@ public class LCStaffPlugin extends JavaPlugin {
         final ListenerRegister listeners = new ListenerRegister(this);
 
         listeners.fastListener(PlayerQuitEvent.class, (event) -> staffs.remove(((PlayerQuitEvent)event).getPlayer()));
-        listeners.fastListener(PlayerJoinEvent.class, (event) -> {
-            final PlayerJoinEvent joinEvent = (PlayerJoinEvent)event;
-            if (joinEvent.getPlayer().hasPermission("lcstaff")) {
-                staffs.put(joinEvent.getPlayer(), new StaffData());
-            }
-        });
     }
 
     public FileConfiguration loadConfig(final String name) {

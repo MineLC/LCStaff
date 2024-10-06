@@ -1,11 +1,14 @@
 package lc.mine.staff.commands;
 
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
-import lc.lcspigot.commands.Command;
 import lc.mine.staff.commands.subcommands.FreezeCommand;
 import lc.mine.staff.commands.subcommands.InvseeCommand;
 import lc.mine.staff.commands.subcommands.TpCommand;
@@ -14,36 +17,35 @@ import lc.mine.staff.commands.subcommands.VanishCommand;
 import lc.mine.staff.messages.Messages;
 import lc.mine.staff.storage.StaffData;
 
-public final class StaffCommand implements Command {
+public final class StaffCommand implements TabExecutor {
 
-    private final Map<Player, StaffData> staffs;
+    private final Map<UUID, StaffData> staffs;
     private final VanishCommand vanish = new VanishCommand();
     private final FreezeCommand freeze = new FreezeCommand();
     private final TpCommand tp = new TpCommand();
     private final TpHereCommand tphere = new TpHereCommand();
     private final InvseeCommand invsee = new InvseeCommand();
 
-    public StaffCommand(Map<Player, StaffData> staffs) {
+    public StaffCommand(Map<UUID, StaffData> staffs) {
         this.staffs = staffs;
     }
 
-    @Override
-    public void handle(CommandSender sender, String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            send(sender, "You need be a player to execute this command");
-            return;
+            sender.sendMessage("You need be a player to execute this command");
+            return true;
         }
         if (!player.hasPermission("lcstaff")) {
             Messages.send(sender, "no-permission");
-            return;
+            return true;
         }
-        final StaffData data = staffs.get(player);
+        final StaffData data = staffs.get(player.getUniqueId());
         if (data == null) {
-            staffs.put(player, new StaffData());
+            staffs.put(player.getUniqueId(), new StaffData());
         }
         if (args.length < 1) {
             Messages.send(sender, "no-arguments-message");
-            return;
+            return true;
         }
 
         switch (args[0].toLowerCase()) {
@@ -66,19 +68,20 @@ public final class StaffCommand implements Command {
                 Messages.send(sender, "no-arguments-message");
                 break;
         }
+        return true;
     }
 
     @Override
-    public String[] tab(CommandSender sender, String[] args) {
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            return list("freeze", "vanish", "v", "tp", "tphere", "invsee");
+            return List.of("freeze", "vanish", "v", "tp", "tphere", "invsee");
         }
         switch (args[0]) {
             case "freeze": return freeze.tab(sender, args);
             case "tp": return tp.tab(sender, args);
             case "tphere": return tphere.tab(sender, args);
             case "invsee": return invsee.tab(sender, args);
-            default: return none();
+            default: return List.of();
         }
     }
 }

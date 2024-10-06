@@ -1,5 +1,7 @@
 package lc.mine.staff.commands.subcommands;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -20,7 +22,7 @@ public final class FreezeCommand implements SubCommand {
         }
         final Player target = Bukkit.getPlayer(player.getName());
         if (target == null) {
-            send(player, Messages.get("target-no-exist").replace("%player%", args[1]));
+            player.sendMessage(Messages.get("target-no-exist").replace("%player%", args[1]));
             return;
         }
         if (data.getPlayerFreeze() != null) {
@@ -40,7 +42,7 @@ public final class FreezeCommand implements SubCommand {
     }
 
     @Override
-    public String[] tab(CommandSender sender, String[] args) {
-        return (args.length == 0) ? (String[])Bukkit.getOnlinePlayers().toArray() : none();
+    public List<String> tab(CommandSender sender, String[] args) {
+        return (args.length == 0) ? Bukkit.getOnlinePlayers().stream().map((p) -> p.getName()).toList() : List.of();
     }
 }

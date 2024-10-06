@@ -3,16 +3,14 @@ package lc.mine.staff;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import lc.lcspigot.commands.CommandStorage;
-import lc.lcspigot.listeners.ListenerRegister;
 import lc.mine.staff.commands.StaffCommand;
+import lc.mine.staff.listener.PlayerQuitListener;
 import lc.mine.staff.messages.StartMessages;
 import lc.mine.staff.storage.StaffData;
 
@@ -22,16 +20,10 @@ public class LCStaffPlugin extends JavaPlugin {
     public void onEnable() {
         new StartMessages().load(this);
 
-        final Map<Player, StaffData> staffs = new HashMap<>();
-        CommandStorage.register(new StaffCommand(staffs), "s");
+        final Map<UUID, StaffData> staffs = new HashMap<>();
+        getCommand("s").setExecutor(new StaffCommand(staffs));
 
-        registerListeners(staffs);
-    }
-
-    private void registerListeners(final Map<Player, StaffData> staffs) {
-        final ListenerRegister listeners = new ListenerRegister(this);
-
-        listeners.fastListener(PlayerQuitEvent.class, (event) -> staffs.remove(((PlayerQuitEvent)event).getPlayer()));
+        getServer().getPluginManager().registerEvents(new PlayerQuitListener(staffs), this);
     }
 
     public FileConfiguration loadConfig(final String name) {

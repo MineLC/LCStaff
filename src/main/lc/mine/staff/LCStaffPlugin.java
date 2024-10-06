@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,7 +22,10 @@ public class LCStaffPlugin extends JavaPlugin {
         new StartMessages().load(this);
 
         final Map<UUID, StaffData> staffs = new HashMap<>();
-        getCommand("s").setExecutor(new StaffCommand(staffs));
+        final PluginCommand command = getCommand("s");
+        final StaffCommand staffCommand = new StaffCommand(staffs);
+        command.setExecutor(staffCommand);
+        command.setTabCompleter(staffCommand);
 
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(staffs), this);
     }

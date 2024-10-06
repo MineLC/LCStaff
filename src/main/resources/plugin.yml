@@ -1,3 +1,8 @@
 name: LcStaff
 main: lc.mine.staff.LCStaffPlugin
 version: 1.0.0
+
+command:
+  s:
+    description: "Staff command"
+    aliases: ["staff", "staffs"]

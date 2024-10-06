@@ -31,10 +31,11 @@ public final class StaffCommand implements TabExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage("You need be a player to execute this command");
             return true;
         }
+        final Player player = (Player)sender;
         if (!player.hasPermission("lcstaff")) {
             Messages.send(sender, "no-permission");
             return true;
@@ -52,7 +53,8 @@ public final class StaffCommand implements TabExecutor {
             case "freeze":
                 freeze.handle(data, player, args);
                 break;
-            case "vanish", "v":
+            case "v":
+            case "vanish":
                 vanish.handle(data, player, args);
                 break;
             case "tp":

@@ -24,12 +24,13 @@ public class StartMessages {
                 parsedMessages.put(key, Messages.color(object.toString()));
                 continue;
             }
-            if (!(object instanceof List<?> list)) {
+            if (!(object instanceof List<?>)) {
                 parsedMessages.put(key, object.toString());
                 continue;
             }
             final StringBuilder builder = new StringBuilder();
             int index = 0;
+            final List<?> list = (List<?>)object;
             for (final Object objectList : list) {
                 builder.append(Messages.color(objectList.toString()));
                 if (++index != list.size()) {

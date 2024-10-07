@@ -20,16 +20,23 @@ public final class FreezeCommand implements SubCommand {
             Messages.send(player, "freeze-format");
             return;
         }
-        final Player target = Bukkit.getPlayer(player.getName());
+        final Player target = Bukkit.getPlayer(args[1]);
         if (target == null) {
             player.sendMessage(Messages.get("target-no-exist").replace("%player%", args[1]));
             return;
         }
+        if (player.equals(target)) {
+            Messages.send(player, "cant-freeze-yourself");
+            return;
+        }
+
         if (data.getPlayerFreeze() != null) {
             final Player freezePlayer = Bukkit.getPlayer(data.getPlayerFreeze());
             freezePlayer.removePotionEffect(PotionEffectType.SLOW);
             freezePlayer.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
             freezePlayer.removePotionEffect(PotionEffectType.BLINDNESS);
+            Messages.send(player, "freeze-off");
+            return;
         }
         data.setPlayerFreeze(target.getUniqueId());
 
@@ -38,7 +45,7 @@ public final class FreezeCommand implements SubCommand {
         target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000, 100));
 
         Messages.send(target, "freeze-message");
-        Messages.send(player, "freeze-complete");
+        Messages.send(player, "freeze-on");
     }
 
     @Override

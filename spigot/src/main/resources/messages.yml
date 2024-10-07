@@ -1,6 +1,6 @@
 no-arguments-message:
   - " "
-  - " &b&lLCSTAFF &8- &71.0.0"
+  - " &b&lLCSTAFF &8- &72.0.0"
   - " "
   - " &e/s &7->"
   - "   &ffreeze &7(jugador)- Congela/Descongela a un jugador"
@@ -17,7 +17,8 @@ vanish-on: "&aAhora eres invisible para todos los jugadores que no sean staffs"
 vanish-off: "&aAhora eres visible para todos"
 
 freeze-format: "&cFormato: /s freeze &6(jugador)"
-freeze-complete: "&cAhora este jugador está congelado"
+freeze-on: "&bAhora este jugador está congelado"
+freeze-off: "&cAhora este jugador está descongelado"
 freeze-message:
   - " "
   - " &b&l¿Estás haciendo trampas?"
@@ -27,6 +28,8 @@ freeze-message:
   - " &7Un staff no te puede pedir contraseñas"
   - " &7privadas: microsoft, minecraft, minelc, etc."
   - " "
+
+cant-freeze-yourself: "&cNo te puedes congelar a ti mismo"
 
 tp-format: "&cFormato: /s tp &6(jugador)"
 invsee-format: "&cFormato: /s invsee &6(jugador)"

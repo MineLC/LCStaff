@@ -40,13 +40,14 @@ public final class StaffCommand implements TabExecutor {
             Messages.send(sender, "no-permission");
             return true;
         }
-        final StaffData data = staffs.get(player.getUniqueId());
-        if (data == null) {
-            staffs.put(player.getUniqueId(), new StaffData());
-        }
+        StaffData data = staffs.get(player.getUniqueId());
         if (args.length < 1) {
             Messages.send(sender, "no-arguments-message");
             return true;
+        }
+        if (data == null) {
+            data = new StaffData();
+            staffs.put(player.getUniqueId(), data);
         }
 
         switch (args[0].toLowerCase()) {

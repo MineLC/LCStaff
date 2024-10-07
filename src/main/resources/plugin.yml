@@ -2,7 +2,7 @@ name: LcStaff
 main: lc.mine.staff.LCStaffPlugin
 version: 2.0.0
 
-command:
+commands:
   s:
     description: "Staff command"
     aliases: ["staff", "staffs"]

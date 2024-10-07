@@ -36,6 +36,7 @@ public final class FreezeCommand implements SubCommand {
             freezePlayer.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
             freezePlayer.removePotionEffect(PotionEffectType.BLINDNESS);
             Messages.send(player, "freeze-off");
+            data.setPlayerFreeze(null);
             return;
         }
         data.setPlayerFreeze(target.getUniqueId());

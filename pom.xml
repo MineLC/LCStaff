@@ -1,42 +1,38 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
     <modelVersion>4.0.0</modelVersion>
-    
-    <groupId>lc.mine</groupId>
-    <artifactId>staffutils</artifactId>
-    <packaging>jar</packaging>
 
-    <name>LCStaff</name>
-    <description>Staff utils for MineLC</description>
+    <groupId>lc.mine</groupId>
+    <artifactId>staff</artifactId>
     <version>2.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>LCStaff-Core</name>
+
+    <developers>
+        <developer>
+            <name>iChocoMilk</name>
+            <email>ichocodev@gmail.com</email>
+            <url>http://ichocomilk.site</url>
+        </developer>
+    </developers>
+    
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <distribution>manual</distribution>
+            <comments>This content is released under the MIT License. See the license file for more informations</comments>
+        </license>
+    </licenses>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-    <repositories>
-        <repository>
-            <id>songoda</id>
-            <url>https://repo.songoda.com/repository/public/</url>
-        </repository>
-    </repositories>
-    <dependencies>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>1.8.8</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <sourceDirectory>${basedir}/src/main</sourceDirectory>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    </properties>  
+           
+    <modules>
+        <module>spigot</module>       
+        <module>bungee</module>       
+    </modules>
 </project>

@@ -1,0 +1,31 @@
+staff-chat: "&e (%server%) &b%player% &7> &e%message%"
+staff-chat-on: "&aHas activado el staffchat"
+staff-chat-off: "&cHas desactivado el staffchat"
+
+no-permission: "&cNecesitas ser staff. Postulate en el discord"
+
+cant-found-player: "&cEl jugador %player% no está conectado"
+cant-found-staffs: "&cNo hay ningún staff en linea. Reportalo desde discord"
+cant-report-yourself: "&cNo puedes reportarte a ti mismo"
+
+report-format: "&cFormato: /report (jugador) (motivo)"
+report-send:
+  - ""
+  - " &c&lReporte"
+  - ""
+  - " &fHas reportado al jugador %accused%"
+  - " &fMotivo: %reason%"
+  - ""
+  - " &fSe le ha avisado al staff"
+  - ""
+
+report-recive:
+  - ""
+  - " &c&lReporte"
+  - ""
+  - " &f%victim% ha reportado a %accused%"
+  - " &fMotivo: &e%reason%"
+  - " &fServer: &e%server%"
+  - ""
+  - " &7Clic aquí para ir al servidor"
+  - ""
